@@ -1,0 +1,30 @@
+{
+	"Rule": {
+		"prefix": "rule",
+		"body": [
+			"${1:name} = ${2:definition} ;"
+		],
+		"description": "EBNF rule definition"
+	},
+	"Optional": {
+		"prefix": "opt",
+		"body": [
+			"[ ${1:expression} ]"
+		],
+		"description": "Optional group [ ... ]"
+	},
+	"Repetition": {
+		"prefix": "rep",
+		"body": [
+			"{ ${1:expression} }"
+		],
+		"description": "Repetition group { ... }"
+	},
+	"Alternation": {
+		"prefix": "alt",
+		"body": [
+			"${1:expression} | ${2:expression}"
+		],
+		"description": "Alternation ... | ..."
+	}
+}

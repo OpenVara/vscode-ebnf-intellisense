@@ -1,0 +1,100 @@
+{
+	"name": "ebnf-syntax-and-intellisense",
+	"type": "module",
+	"displayName": "EBNF Syntax Highlighting and Intellisense",
+	"description": "ISO/IEC 14977 EBNF grammar support with syntax highlighting, go to definition, hover, completions, diagnostics, and more",
+	"version": "0.1.0",
+	"author": {
+		"name": "xsyetopz"
+	},
+	"license": "MIT",
+	"private": true,
+	"publisher": "xsyetopz",
+		"homepage": "https://github.com/xsyetopz/ebnf-syntax-and-intellisense",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/xsyetopz/ebnf-syntax-and-intellisense.git"
+	},
+	"bugs": {
+		"url": "https://github.com/xsyetopz/ebnf-syntax-and-intellisense/issues"
+	},
+	"keywords": [
+		"EBNF",
+		"BNF",
+		"grammar",
+		"syntax"
+	],
+	"categories": [
+		"Programming Languages"
+	],
+	"main": "./dist/extension.js",
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "ebnf",
+				"aliases": [
+					"EBNF",
+					"ebnf"
+				],
+				"extensions": [
+					".ebnf",
+					".bnf"
+				],
+				"configuration": "language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "ebnf",
+				"scopeName": "source.ebnf",
+				"path": "syntaxes/ebnf.tmLanguage.json"
+			},
+			{
+				"scopeName": "markdown.ebnf.codeblock",
+				"path": "syntaxes/ebnf-markdown.tmLanguage.json",
+				"injectTo": [
+					"text.html.markdown"
+				],
+				"embeddedLanguages": {
+					"meta.embedded.block.ebnf": "ebnf"
+				}
+			}
+		],
+		"snippets": [
+			{
+				"language": "ebnf",
+				"path": "snippets/ebnf.json"
+			}
+		],
+		"configuration": {
+			"title": "EBNF",
+			"properties": {
+				"ebnf.diagnostics.enable": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable/disable diagnostics for EBNF files."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"build": "bun build ./client/src/main.ts --outfile=./dist/extension.js --external vscode --target=node",
+		"package": "bun run build && vsce package",
+		"vscode:prepublish": "bun run build"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "latest",
+		"@types/bun": "latest",
+		"@types/node": "latest",
+		"@types/vscode": "^1.75.0",
+		"@vscode/vsce": "latest",
+		"typescript": "latest"
+	},
+	"trustedDependencies": [
+		"@biomejs/biome",
+		"@vscode/vsce-sign"
+	]
+}
