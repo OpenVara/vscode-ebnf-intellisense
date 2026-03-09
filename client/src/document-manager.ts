@@ -1,5 +1,5 @@
-import type { Disposable, TextDocument } from "vscode";
-import { buildSymbolTable, parse } from "./parser";
+import { type Disposable, type TextDocument, workspace } from "vscode";
+import { type ParseOptions, buildSymbolTable, parse } from "./parser";
 import type { EbnfDocument, SymbolTable } from "./types";
 
 interface CachedParse {
@@ -20,7 +20,11 @@ export class DocumentManager implements Disposable {
 			return { document: cached.document, symbolTable: cached.symbolTable };
 		}
 
-		const parsed = parse(doc.getText());
+		const config = workspace.getConfiguration("ebnf");
+		const options: ParseOptions = {
+			spacedIdentifiers: config.get<boolean>("parser.spacedIdentifiers", false),
+		};
+		const parsed = parse(doc.getText(), options);
 		const symbolTable = buildSymbolTable(parsed);
 
 		this.cache.set(uri, {

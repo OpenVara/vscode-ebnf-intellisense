@@ -81,6 +81,11 @@
 					"type": "boolean",
 					"default": true,
 					"description": "Report rules that are defined but never referenced (as hints)."
+				},
+				"ebnf.parser.spacedIdentifiers": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable ISO 14977 §6.2 spaced meta-identifiers (e.g., 'signed integer' as a single rule name)."
 				}
 			}
 		}
