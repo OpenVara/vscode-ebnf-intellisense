@@ -40,14 +40,14 @@ EBNF (Extended Backus-Naur Form) is a notation for defining the syntax of progra
 
 ## Installation
 
-Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.vscode-ebnf) or search for "EBNF" in VS Code extensions.
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.vscode-ebnf-intellisense) or search for "EBNF" in VS Code extensions.
 
 To build from source:
 
 ```bash
 bun install
 bun run package
-code --install-extension vscode-ebnf-*.vsix
+code --install-extension vscode-ebnf-intellisense-*.vsix
 ```
 
 ## Usage
@@ -125,6 +125,6 @@ MIT
 
 ## Links
 
-- [GitHub Repository](https://github.com/xsyetopz/vscode-ebnf)
-- [Issue Tracker](https://github.com/xsyetopz/vscode-ebnf/issues)
-- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.vscode-ebnf)
+- [GitHub Repository](https://github.com/xsyetopz/vscode-ebnf-intellisense)
+- [Issue Tracker](https://github.com/xsyetopz/vscode-ebnf-intellisense/issues)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.vscode-ebnf-intellisense)

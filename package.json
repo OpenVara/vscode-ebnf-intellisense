@@ -1,5 +1,5 @@
 {
-  "name": "vscode-ebnf",
+  "name": "vscode-ebnf-intellisense",
   "type": "module",
   "displayName": "EBNF Syntax Highlighting and Intellisense",
   "description": "ISO/IEC 14977 EBNF grammar support with syntax highlighting, go-to definition, hover, completions, diagnostics, and more",
@@ -10,13 +10,13 @@
   "license": "MIT",
   "private": true,
   "publisher": "OpenVara",
-  "homepage": "https://github.com/xsyetopz/vscode-ebnf",
+  "homepage": "https://github.com/xsyetopz/vscode-ebnf-intellisense",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xsyetopz/vscode-ebnf.git"
+    "url": "https://github.com/xsyetopz/vscode-ebnf-intellisense.git"
   },
   "bugs": {
-    "url": "https://github.com/xsyetopz/vscode-ebnf/issues"
+    "url": "https://github.com/xsyetopz/vscode-ebnf-intellisense/issues"
   },
   "keywords": [
     "EBNF",
