@@ -1,164 +1,165 @@
 {
-	"name": "vscode-ebnf",
-	"type": "module",
-	"displayName": "EBNF Syntax Highlighting and Intellisense",
-	"description": "ISO/IEC 14977 EBNF grammar support with syntax highlighting, go-to definition, hover, completions, diagnostics, and more",
-	"version": "0.1.0",
-	"author": {
-		"name": "xsyetopz"
-	},
-	"license": "MIT",
-	"private": true,
-	"publisher": "xsyetopz",
-		"homepage": "https://github.com/xsyetopz/vscode-ebnf",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/xsyetopz/vscode-ebnf.git"
-	},
-	"bugs": {
-		"url": "https://github.com/xsyetopz/vscode-ebnf/issues"
-	},
-	"keywords": [
-		"EBNF",
-		"BNF",
-		"grammar",
-		"syntax"
-	],
-	"categories": [
-		"Programming Languages"
-	],
-	"main": "./dist/extension.js",
-	"engines": {
-		"vscode": "^1.75.0"
-	},
-	"contributes": {
-		"languages": [
-			{
-				"id": "ebnf",
-				"aliases": [
-					"EBNF",
-					"ebnf"
-				],
-				"extensions": [
-					".ebnf",
-					".bnf"
-				],
-				"configuration": "language-configuration.json"
-			}
-		],
-		"grammars": [
-			{
-				"language": "ebnf",
-				"scopeName": "source.ebnf",
-				"path": "syntaxes/ebnf.tmLanguage.json"
-			},
-			{
-				"scopeName": "markdown.ebnf.codeblock",
-				"path": "syntaxes/ebnf-markdown.tmLanguage.json",
-				"injectTo": [
-					"text.html.markdown"
-				],
-				"embeddedLanguages": {
-					"meta.embedded.block.ebnf": "ebnf"
-				}
-			}
-		],
-		"snippets": [
-			{
-				"language": "ebnf",
-				"path": "snippets/ebnf.json"
-			}
-		],
-		"configuration": {
-			"title": "EBNF",
-			"properties": {
-				"ebnf.diagnostics.enable": {
-					"type": "boolean",
-					"default": true,
-					"description": "Enable/disable diagnostics for EBNF files."
-				},
-				"ebnf.diagnostics.unusedRules": {
-					"type": "boolean",
-					"default": true,
-					"description": "Report rules that are defined but never referenced (as hints)."
-				},
-				"ebnf.parser.spacedIdentifiers": {
-					"type": "boolean",
-					"default": false,
-					"description": "Enable ISO 14977 §6.2 spaced meta-identifiers (e.g., 'signed integer' as a single rule name)."
-				},
-				"ebnf.diagnostics.duplicateDefinitions": {
-					"type": "boolean",
-					"default": true,
-					"description": "Report duplicate rule definitions."
-				},
-				"ebnf.diagnostics.undefinedReferences": {
-					"type": "boolean",
-					"default": true,
-					"description": "Report references to undefined rules."
-				},
-				"ebnf.inlayHints.referenceCount": {
-					"type": "boolean",
-					"default": false,
-					"description": "Show reference count after rule names."
-				},
-				"ebnf.inlayHints.recursion": {
-					"type": "boolean",
-					"default": false,
-					"description": "Mark directly recursive rules."
-				},
-				"ebnf.inlayHints.unusedMarker": {
-					"type": "boolean",
-					"default": false,
-					"description": "Mark unused rules inline (in addition to diagnostic)."
-				},
-				"ebnf.style.alternativeOperator": {
-					"type": "string",
-					"enum": ["|", "/", "!"],
-					"default": "|",
-					"enumDescriptions": [
-						"Pipe: a | b",
-						"Slash: a / b",
-						"Bang: a ! b"
-					],
-					"description": "Preferred alternative (OR) operator style."
-				},
-				"ebnf.style.terminator": {
-					"type": "string",
-					"enum": [";", "."],
-					"default": ";",
-					"description": "Preferred rule terminator."
-				},
-				"ebnf.style.optionalBrackets": {
-					"type": "string",
-					"enum": ["[]", "(/ /)"],
-					"default": "[]",
-					"description": "Preferred optional group brackets."
-				},
-				"ebnf.style.repetitionBrackets": {
-					"type": "string",
-					"enum": ["{}", "(: :)"],
-					"default": "{}",
-					"description": "Preferred repetition group brackets."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"build": "bun build ./client/src/main.ts --outfile=./dist/extension.js --external vscode --target=node",
-		"package": "bun run build && vsce package",
-		"vscode:prepublish": "bun run build"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "latest",
-		"@types/bun": "latest",
-		"@types/node": "latest",
-		"@types/vscode": "^1.75.0",
-		"@vscode/vsce": "latest",
-		"typescript": "latest"
-	},
-	"trustedDependencies": [
-		"@biomejs/biome",
-		"@vscode/vsce-sign"
-	]
+  "name": "vscode-ebnf",
+  "type": "module",
+  "displayName": "EBNF Syntax Highlighting and Intellisense",
+  "description": "ISO/IEC 14977 EBNF grammar support with syntax highlighting, go-to definition, hover, completions, diagnostics, and more",
+  "version": "0.1.0",
+  "author": {
+    "name": "xsyetopz"
+  },
+  "license": "MIT",
+  "private": true,
+  "publisher": "OpenVara",
+  "homepage": "https://github.com/xsyetopz/vscode-ebnf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xsyetopz/vscode-ebnf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xsyetopz/vscode-ebnf/issues"
+  },
+  "keywords": [
+    "EBNF",
+    "BNF",
+    "grammar",
+    "syntax"
+  ],
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "ebnf",
+        "aliases": [
+          "EBNF",
+          "ebnf"
+        ],
+        "extensions": [
+          ".ebnf",
+          ".bnf"
+        ],
+        "configuration": "language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ebnf",
+        "scopeName": "source.ebnf",
+        "path": "syntaxes/ebnf.tmLanguage.json"
+      },
+      {
+        "scopeName": "markdown.ebnf.codeblock",
+        "path": "syntaxes/ebnf-markdown.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.ebnf": "ebnf"
+        }
+      }
+    ],
+    "snippets": [
+      {
+        "language": "ebnf",
+        "path": "snippets/ebnf.json"
+      }
+    ],
+    "configuration": {
+      "title": "EBNF",
+      "properties": {
+        "ebnf.diagnostics.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable diagnostics for EBNF files."
+        },
+        "ebnf.diagnostics.unusedRules": {
+          "type": "boolean",
+          "default": true,
+          "description": "Report rules that are defined but never referenced (as hints)."
+        },
+        "ebnf.parser.spacedIdentifiers": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable ISO 14977 §6.2 spaced meta-identifiers (e.g., 'signed integer' as a single rule name)."
+        },
+        "ebnf.diagnostics.duplicateDefinitions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Report duplicate rule definitions."
+        },
+        "ebnf.diagnostics.undefinedReferences": {
+          "type": "boolean",
+          "default": true,
+          "description": "Report references to undefined rules."
+        },
+        "ebnf.inlayHints.referenceCount": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show reference count after rule names."
+        },
+        "ebnf.inlayHints.recursion": {
+          "type": "boolean",
+          "default": false,
+          "description": "Mark directly recursive rules."
+        },
+        "ebnf.inlayHints.unusedMarker": {
+          "type": "boolean",
+          "default": false,
+          "description": "Mark unused rules inline (in addition to diagnostic)."
+        },
+        "ebnf.style.alternativeOperator": {
+          "type": "string",
+          "enum": ["|", "/", "!"],
+          "default": "|",
+          "enumDescriptions": [
+            "Pipe: a | b",
+            "Slash: a / b",
+            "Bang: a ! b"
+          ],
+          "description": "Preferred alternative (OR) operator style."
+        },
+        "ebnf.style.terminator": {
+          "type": "string",
+          "enum": [";", "."],
+          "default": ";",
+          "description": "Preferred rule terminator."
+        },
+        "ebnf.style.optionalBrackets": {
+          "type": "string",
+          "enum": ["[]", "(/ /)"],
+          "default": "[]",
+          "description": "Preferred optional group brackets."
+        },
+        "ebnf.style.repetitionBrackets": {
+          "type": "string",
+          "enum": ["{}", "(: :)"],
+          "default": "{}",
+          "description": "Preferred repetition group brackets."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "bun build ./client/src/main.ts --outfile=./dist/extension.js --external vscode --target=node",
+    "package": "bun run build && vsce package",
+    "vscode:prepublish": "bun run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@types/bun": "latest",
+    "@types/node": "latest",
+    "@types/vscode": "^1.75.0",
+    "@vscode/vsce": "latest",
+    "typescript": "latest"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@vscode/vsce-sign",
+    "keytar"
+  ]
 }
