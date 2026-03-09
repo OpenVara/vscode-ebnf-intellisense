@@ -8,6 +8,7 @@ import { DocumentManager } from "./document-manager";
 import { EbnfCompletionProvider } from "./providers/completion";
 import { EbnfDefinitionProvider } from "./providers/definition";
 import { updateDiagnostics } from "./providers/diagnostics";
+import { EbnfFoldingRangeProvider } from "./providers/folding";
 import { EbnfDocumentHighlightProvider } from "./providers/highlighting";
 import { EbnfHoverProvider } from "./providers/hover";
 import { EbnfReferenceProvider } from "./providers/references";
@@ -29,6 +30,7 @@ export function activate(context: ExtensionContext): void {
 		languages.registerCompletionItemProvider(SELECTOR, new EbnfCompletionProvider(manager)),
 		languages.registerRenameProvider(SELECTOR, new EbnfRenameProvider(manager)),
 		languages.registerDocumentHighlightProvider(SELECTOR, new EbnfDocumentHighlightProvider(manager)),
+		languages.registerFoldingRangeProvider(SELECTOR, new EbnfFoldingRangeProvider(manager)),
 		diagnosticCollection,
 	);
 
