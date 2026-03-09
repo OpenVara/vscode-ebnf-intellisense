@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "ebnf-syntax-and-intellisense",
+      "name": "vscode-ebnf",
       "devDependencies": {
         "@biomejs/biome": "latest",
         "@types/bun": "latest",

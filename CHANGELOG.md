@@ -31,5 +31,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Prevented strings from spanning lines with lookahead end patterns
 - Added `#comment` include in expression patterns for defensive robustness
 
-[Unreleased]: https://github.com/xsyetopz/ebnf-syntax-and-intellisense/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/xsyetopz/ebnf-syntax-and-intellisense/releases/tag/v0.1.0
+[Unreleased]: https://github.com/xsyetopz/vscode-ebnf/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/xsyetopz/vscode-ebnf/releases/tag/v0.1.0

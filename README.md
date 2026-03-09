@@ -40,14 +40,14 @@ EBNF (Extended Backus-Naur Form) is a notation for defining the syntax of progra
 
 ## Installation
 
-Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.ebnf-syntax-and-intellisense) or search for "EBNF" in VS Code extensions.
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.vscode-ebnf) or search for "EBNF" in VS Code extensions.
 
 To build from source:
 
 ```bash
 bun install
 bun run package
-code --install-extension ebnf-syntax-and-intellisense-*.vsix
+code --install-extension vscode-ebnf-*.vsix
 ```
 
 ## Usage
@@ -109,7 +109,7 @@ To enable:
 | `"..."` or `'...'` | Terminal string |
 | `(* ... *)` | Comment |
 | `? ... ?` | Special sequence |
-| `- ` | Exception |
+| `-` | Exception |
 | `3 * rule` | Repetition (exactly 3 times) |
 
 ## Development
@@ -125,6 +125,6 @@ MIT
 
 ## Links
 
-- [GitHub Repository](https://github.com/xsyetopz/ebnf-syntax-and-intellisense)
-- [Issue Tracker](https://github.com/xsyetopz/ebnf-syntax-and-intellisense/issues)
-- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.ebnf-syntax-and-intellisense)
+- [GitHub Repository](https://github.com/xsyetopz/vscode-ebnf)
+- [Issue Tracker](https://github.com/xsyetopz/vscode-ebnf/issues)
+- [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xsyetopz.vscode-ebnf)
