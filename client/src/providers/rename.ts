@@ -6,11 +6,14 @@ import {
 	type TextDocument,
 	WorkspaceEdit,
 } from "vscode";
-import type { DocumentManager } from "../document-manager";
-import { getWordLookup } from "./word-at-position";
+import type { DocumentManager } from "../document-manager.ts";
+import { getWordLookup } from "./word-at-position.ts";
 
-export class EbnfRenameProvider implements RenameProvider {
-	constructor(private readonly manager: DocumentManager) {}
+export class AbnfRenameProvider implements RenameProvider {
+	private readonly manager: DocumentManager;
+	constructor(manager: DocumentManager) {
+		this.manager = manager;
+	}
 
 	provideRenameEdits(
 		doc: TextDocument,

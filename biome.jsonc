@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.4.4/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -28,6 +28,21 @@
 				"rules": {
 					"style": {
 						"noDefaultExport": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"client/src/**"
+			],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUndeclaredDependencies": "off" // vscode is provided by the extension host at runtime
+					},
+					"complexity": {
+						"noExcessiveCognitiveComplexity": "warn" // parsers/formatters are inherently complex
 					}
 				}
 			}
@@ -133,7 +148,10 @@
 		}
 	},
 	"javascript": {
-		"globals": ["Bun", "$"],
+		"globals": [
+			"Bun",
+			"$"
+		],
 		"formatter": {
 			"quoteStyle": "double"
 		}

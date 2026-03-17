@@ -5,16 +5,48 @@ import {
 	type ReferenceContext,
 	type ReferenceProvider,
 	type TextDocument,
+	type Uri,
 } from "vscode";
-import type { DocumentManager } from "../document-manager";
-import type { WorkspaceIndex } from "../workspace-index";
-import { getWordLookup } from "./word-at-position";
+import type { DocumentManager } from "../document-manager.ts";
+import type { WorkspaceIndex } from "../workspace-index.ts";
+import { getWordLookup } from "./word-at-position.ts";
 
-export class EbnfReferenceProvider implements ReferenceProvider {
-	constructor(
-		private readonly manager: DocumentManager,
-		private readonly workspaceIndex?: WorkspaceIndex,
-	) {}
+type SymbolTable = ReturnType<DocumentManager["get"]>["symbolTable"];
+
+function collectLocationsFromFile(
+	symbolTable: SymbolTable,
+	word: string,
+	uri: Uri,
+	includeDeclaration: boolean,
+): Location[] {
+	const locations: Location[] = [];
+
+	if (includeDeclaration) {
+		const defs = symbolTable.definitions.get(word);
+		if (defs) {
+			for (const rule of defs) {
+				locations.push(new Location(uri, rule.nameRange));
+			}
+		}
+	}
+
+	const refs = symbolTable.references.get(word);
+	if (refs) {
+		for (const ref of refs) {
+			locations.push(new Location(uri, ref.range));
+		}
+	}
+
+	return locations;
+}
+
+export class AbnfReferenceProvider implements ReferenceProvider {
+	private readonly manager: DocumentManager;
+	private readonly workspaceIndex: WorkspaceIndex | undefined;
+	constructor(manager: DocumentManager, workspaceIndex?: WorkspaceIndex) {
+		this.manager = manager;
+		this.workspaceIndex = workspaceIndex;
+	}
 
 	provideReferences(
 		doc: TextDocument,
@@ -27,50 +59,26 @@ export class EbnfReferenceProvider implements ReferenceProvider {
 			return undefined;
 		}
 
-		const locations: Location[] = [];
 		const currentUri = doc.uri.toString();
+		const locations: Location[] = collectLocationsFromFile(
+			lookup.symbolTable,
+			lookup.word,
+			doc.uri,
+			context.includeDeclaration,
+		);
 
-		if (context.includeDeclaration) {
-			const defs = lookup.symbolTable.definitions.get(lookup.word);
-			if (defs) {
-				for (const rule of defs) {
-					locations.push(new Location(doc.uri, rule.nameRange));
-				}
-			}
-		}
-
-		const refs = lookup.symbolTable.references.get(lookup.word);
-		if (refs) {
-			for (const ref of refs) {
-				locations.push(new Location(doc.uri, ref.range));
-			}
-		}
-
-		// Add cross-file references from workspace index
 		if (this.workspaceIndex) {
 			for (const file of this.workspaceIndex.getAllFiles()) {
-				// Skip current file (already handled above)
 				if (file.uri.toString() === currentUri) {
 					continue;
 				}
-
-				// Include declarations from other files
-				if (context.includeDeclaration) {
-					const defs = file.symbolTable.definitions.get(lookup.word);
-					if (defs) {
-						for (const rule of defs) {
-							locations.push(new Location(file.uri, rule.nameRange));
-						}
-					}
-				}
-
-				// Include references from other files
-				const fileRefs = file.symbolTable.references.get(lookup.word);
-				if (fileRefs) {
-					for (const ref of fileRefs) {
-						locations.push(new Location(file.uri, ref.range));
-					}
-				}
+				const fileLocations = collectLocationsFromFile(
+					file.symbolTable,
+					lookup.word,
+					file.uri,
+					context.includeDeclaration,
+				);
+				locations.push(...fileLocations);
 			}
 		}
 

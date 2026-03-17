@@ -6,11 +6,16 @@ import {
 	type Position,
 	type TextDocument,
 } from "vscode";
-import type { DocumentManager } from "../document-manager";
-import { getWordLookup } from "./word-at-position";
+import type { DocumentManager } from "../document-manager.ts";
+import { getWordLookup } from "./word-at-position.ts";
 
-export class EbnfDocumentHighlightProvider implements DocumentHighlightProvider {
-	constructor(private readonly manager: DocumentManager) {}
+export class AbnfDocumentHighlightProvider
+	implements DocumentHighlightProvider
+{
+	private readonly manager: DocumentManager;
+	constructor(manager: DocumentManager) {
+		this.manager = manager;
+	}
 
 	provideDocumentHighlights(
 		doc: TextDocument,

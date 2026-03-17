@@ -1,6 +1,6 @@
 import type { Position, Range, TextDocument } from "vscode";
-import type { DocumentManager } from "../document-manager";
-import type { SymbolTable } from "../types";
+import type { DocumentManager } from "../document-manager.ts";
+import type { SymbolTable } from "../types.ts";
 
 export const IDENTIFIER_PATTERN = /[a-zA-Z][a-zA-Z0-9-]*/;
 
@@ -35,10 +35,10 @@ function findSpacedIdentifierRange(
 	position: Position,
 	manager: DocumentManager,
 ): { word: string; wordRange: Range; symbolTable: SymbolTable } | undefined {
-	const { document: ebnfDoc, symbolTable } = manager.get(doc);
+	const { document: grammarDoc, symbolTable } = manager.get(doc);
 
 	// Check rule name ranges
-	for (const rule of ebnfDoc.rules) {
+	for (const rule of grammarDoc.rules) {
 		if (positionInRange(position, rule.nameRange)) {
 			return {
 				word: rule.name,
@@ -70,6 +70,7 @@ export function getWordLookup(
 	// First try to find a multi-word identifier range (for spaced identifiers)
 	const spacedResult = findSpacedIdentifierRange(doc, position, manager);
 	if (spacedResult) {
+		spacedResult.word = spacedResult.word.toLowerCase();
 		return spacedResult;
 	}
 
@@ -79,7 +80,7 @@ export function getWordLookup(
 		return undefined;
 	}
 
-	const word = doc.getText(wordRange);
+	const word = doc.getText(wordRange).toLowerCase();
 	const { symbolTable } = manager.get(doc);
 	return { word, wordRange, symbolTable };
 }

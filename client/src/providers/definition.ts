@@ -5,15 +5,17 @@ import {
 	type Position,
 	type TextDocument,
 } from "vscode";
-import type { DocumentManager } from "../document-manager";
-import type { WorkspaceIndex } from "../workspace-index";
-import { getWordLookup } from "./word-at-position";
+import type { DocumentManager } from "../document-manager.ts";
+import type { WorkspaceIndex } from "../workspace-index.ts";
+import { getWordLookup } from "./word-at-position.ts";
 
-export class EbnfDefinitionProvider implements DefinitionProvider {
-	constructor(
-		private readonly manager: DocumentManager,
-		private readonly workspaceIndex?: WorkspaceIndex,
-	) {}
+export class AbnfDefinitionProvider implements DefinitionProvider {
+	private readonly manager: DocumentManager;
+	private readonly workspaceIndex: WorkspaceIndex | undefined;
+	constructor(manager: DocumentManager, workspaceIndex?: WorkspaceIndex) {
+		this.manager = manager;
+		this.workspaceIndex = workspaceIndex;
+	}
 
 	provideDefinition(
 		doc: TextDocument,

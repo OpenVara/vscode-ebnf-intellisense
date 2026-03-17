@@ -10,12 +10,13 @@ export interface Rule {
 	nameRange: Range;
 	definitionRange: Range;
 	definitionText: string;
-	isPseudoRule: boolean;
 	precedingComment?: string | undefined;
 	references: IdentifierReference[];
+	isIncremental?: boolean;
+	isCoreRule?: boolean;
 }
 
-export interface EbnfDocument {
+export interface GrammarDocument {
 	rules: Rule[];
 	diagnostics: Diagnostic[];
 }

@@ -6,11 +6,14 @@ import {
 	type Position,
 	type TextDocument,
 } from "vscode";
-import type { DocumentManager } from "../document-manager";
-import { getWordLookup } from "./word-at-position";
+import type { DocumentManager } from "../document-manager.ts";
+import { getWordLookup } from "./word-at-position.ts";
 
-export class EbnfHoverProvider implements HoverProvider {
-	constructor(private readonly manager: DocumentManager) {}
+export class AbnfHoverProvider implements HoverProvider {
+	private readonly manager: DocumentManager;
+	constructor(manager: DocumentManager) {
+		this.manager = manager;
+	}
 
 	provideHover(
 		doc: TextDocument,
@@ -30,8 +33,7 @@ export class EbnfHoverProvider implements HoverProvider {
 		const parts: string[] = [];
 
 		for (const rule of definitions) {
-			const label = rule.isPseudoRule ? "_pseudo-rule_\n\n" : "";
-			parts.push(`${label}\`\`\`ebnf\n${rule.name} = ${rule.definitionText} ;\n\`\`\``);
+			parts.push(`\`\`\`abnf\n${rule.name} = ${rule.definitionText}\n\`\`\``);
 			if (rule.precedingComment) {
 				parts.push(rule.precedingComment);
 			}

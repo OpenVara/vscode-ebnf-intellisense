@@ -1,26 +1,26 @@
 {
-  "name": "vscode-ebnf-intellisense",
+  "name": "vscode-abnf-intellisense",
   "type": "module",
-  "displayName": "EBNF Syntax Highlighting and Intellisense",
-  "description": "ISO/IEC 14977 EBNF grammar support with syntax highlighting, go-to definition, hover, completions, diagnostics, and more",
-  "version": "0.1.1",
+  "displayName": "ABNF Syntax Highlighting and Intellisense",
+  "description": "ABNF (RFC 5234) grammar support with syntax highlighting, go-to definition, hover, completions, diagnostics, formatting, and more",
+  "version": "0.2.0",
   "author": {
     "name": "xsyetopz"
   },
   "license": "MIT",
   "private": true,
-  "publisher": "OpenVara",
-  "homepage": "https://github.com/xsyetopz/vscode-ebnf-intellisense",
+  "publisher": "xsyetopz",
+  "homepage": "https://github.com/xsyetopz/vscode-abnf-intellisense",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xsyetopz/vscode-ebnf-intellisense.git"
+    "url": "https://github.com/xsyetopz/vscode-abnf-intellisense.git"
   },
   "bugs": {
-    "url": "https://github.com/xsyetopz/vscode-ebnf-intellisense/issues"
+    "url": "https://github.com/xsyetopz/vscode-abnf-intellisense/issues"
   },
   "keywords": [
-    "EBNF",
-    "BNF",
+    "ABNF",
+    "RFC 5234",
     "grammar",
     "syntax"
   ],
@@ -34,119 +34,111 @@
   "contributes": {
     "languages": [
       {
-        "id": "ebnf",
+        "id": "abnf",
         "aliases": [
-          "EBNF",
-          "ebnf"
+          "ABNF",
+          "abnf"
         ],
         "extensions": [
-          ".ebnf",
-          ".bnf"
+          ".abnf"
         ],
-        "configuration": "language-configuration.json"
+        "configuration": "abnf-language-configuration.json"
       }
     ],
     "grammars": [
       {
-        "language": "ebnf",
-        "scopeName": "source.ebnf",
-        "path": "syntaxes/ebnf.tmLanguage.json"
+        "language": "abnf",
+        "scopeName": "source.abnf",
+        "path": "syntaxes/abnf.tmLanguage.json"
       },
       {
-        "scopeName": "markdown.ebnf.codeblock",
-        "path": "syntaxes/ebnf-markdown.tmLanguage.json",
+        "scopeName": "text.html.markdown.abnf.codeblock",
+        "path": "syntaxes/abnf-markdown.tmLanguage.json",
         "injectTo": [
           "text.html.markdown"
         ],
         "embeddedLanguages": {
-          "meta.embedded.block.ebnf": "ebnf"
+          "meta.embedded.block.abnf": "abnf"
         }
       }
     ],
     "snippets": [
       {
-        "language": "ebnf",
-        "path": "snippets/ebnf.json"
+        "language": "abnf",
+        "path": "snippets/abnf.json"
       }
     ],
     "configuration": {
-      "title": "EBNF",
+      "title": "ABNF",
       "properties": {
-        "ebnf.diagnostics.enable": {
+        "abnf.diagnostics.enable": {
           "type": "boolean",
           "default": true,
-          "description": "Enable/disable diagnostics for EBNF files."
+          "description": "Enable/disable diagnostics for ABNF files."
         },
-        "ebnf.diagnostics.unusedRules": {
+        "abnf.diagnostics.unusedRules": {
           "type": "boolean",
           "default": true,
           "description": "Report rules that are defined but never referenced (as hints)."
         },
-        "ebnf.parser.spacedIdentifiers": {
-          "type": "boolean",
-          "default": false,
-          "description": "Enable ISO 14977 §6.2 spaced meta-identifiers (e.g., 'signed integer' as a single rule name)."
-        },
-        "ebnf.diagnostics.duplicateDefinitions": {
-          "type": "boolean",
-          "default": true,
-          "description": "Report duplicate rule definitions."
-        },
-        "ebnf.diagnostics.undefinedReferences": {
+        "abnf.diagnostics.undefinedReferences": {
           "type": "boolean",
           "default": true,
           "description": "Report references to undefined rules."
         },
-        "ebnf.inlayHints.referenceCount": {
+        "abnf.formatting.alignEquals": {
+          "type": "boolean",
+          "default": true,
+          "description": "Align = signs across consecutive rule definitions."
+        },
+        "abnf.formatting.continuationIndent": {
+          "type": "number",
+          "default": 4,
+          "description": "Number of spaces for continuation lines."
+        },
+        "abnf.formatting.alternativeIndent": {
+          "type": "string",
+          "enum": [
+            "align",
+            "indent"
+          ],
+          "default": "align",
+          "enumDescriptions": [
+            "Align / under the first element after =",
+            "Use fixed continuation indent"
+          ],
+          "description": "How to indent alternatives on continuation lines."
+        },
+        "abnf.formatting.insertFinalNewline": {
+          "type": "boolean",
+          "default": true,
+          "description": "Insert a final newline at end of file."
+        },
+        "abnf.inlayHints.referenceCount": {
           "type": "boolean",
           "default": false,
           "description": "Show reference count after rule names."
         },
-        "ebnf.inlayHints.recursion": {
+        "abnf.inlayHints.recursion": {
           "type": "boolean",
           "default": false,
           "description": "Mark directly recursive rules."
         },
-        "ebnf.inlayHints.unusedMarker": {
+        "abnf.inlayHints.unusedMarker": {
           "type": "boolean",
           "default": false,
           "description": "Mark unused rules inline (in addition to diagnostic)."
-        },
-        "ebnf.style.alternativeOperator": {
-          "type": "string",
-          "enum": ["|", "/", "!"],
-          "default": "|",
-          "enumDescriptions": [
-            "Pipe: a | b",
-            "Slash: a / b",
-            "Bang: a ! b"
-          ],
-          "description": "Preferred alternative (OR) operator style."
-        },
-        "ebnf.style.terminator": {
-          "type": "string",
-          "enum": [";", "."],
-          "default": ";",
-          "description": "Preferred rule terminator."
-        },
-        "ebnf.style.optionalBrackets": {
-          "type": "string",
-          "enum": ["[]", "(/ /)"],
-          "default": "[]",
-          "description": "Preferred optional group brackets."
-        },
-        "ebnf.style.repetitionBrackets": {
-          "type": "string",
-          "enum": ["{}", "(: :)"],
-          "default": "{}",
-          "description": "Preferred repetition group brackets."
         }
       }
     }
   },
   "scripts": {
     "build": "bun build ./client/src/main.ts --outfile=./dist/extension.js --external vscode --target=node",
+    "biome:check": "bunx biome check . --write --unsafe --max-diagnostics 16384",
+    "biome:format": "bunx biome format . --write --max-diagnostics 16384",
+    "biome:lint": "bunx biome lint . --write --max-diagnostics 16384",
     "package": "bun run build && vsce package",
+    "typecheck": "tsc --noEmit",
     "vscode:prepublish": "bun run build"
   },
   "devDependencies": {

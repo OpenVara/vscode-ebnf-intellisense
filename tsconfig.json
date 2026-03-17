@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "allowArbitraryExtensions": true,
+        "allowImportingTsExtensions": true,
         "allowUmdGlobalAccess": true,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
@@ -13,6 +14,7 @@
         "module": "commonjs",
         "moduleDetection": "force",
         "moduleResolution": "node",
+        "noEmit": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
         "noImplicitReturns": true,

@@ -1,10 +1,10 @@
-import { type Disposable, type TextDocument, workspace } from "vscode";
-import { type ParseOptions, buildSymbolTable, parse } from "./parser";
-import type { EbnfDocument, SymbolTable } from "./types";
+import type { Disposable, TextDocument } from "vscode";
+import { buildAbnfSymbolTable, parseAbnf } from "./abnf/parser.ts";
+import type { GrammarDocument, SymbolTable } from "./types.ts";
 
 interface CachedParse {
 	version: number;
-	document: EbnfDocument;
+	document: GrammarDocument;
 	symbolTable: SymbolTable;
 }
 
@@ -12,7 +12,10 @@ export class DocumentManager implements Disposable {
 	private cache = new Map<string, CachedParse>();
 	private debounceTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
-	get(doc: TextDocument): { document: EbnfDocument; symbolTable: SymbolTable } {
+	get(doc: TextDocument): {
+		document: GrammarDocument;
+		symbolTable: SymbolTable;
+	} {
 		const uri = doc.uri.toString();
 		const cached = this.cache.get(uri);
 
@@ -20,12 +23,8 @@ export class DocumentManager implements Disposable {
 			return { document: cached.document, symbolTable: cached.symbolTable };
 		}
 
-		const config = workspace.getConfiguration("ebnf");
-		const options: ParseOptions = {
-			spacedIdentifiers: config.get<boolean>("parser.spacedIdentifiers", false),
-		};
-		const parsed = parse(doc.getText(), options);
-		const symbolTable = buildSymbolTable(parsed);
+		const parsed = parseAbnf(doc.getText());
+		const symbolTable = buildAbnfSymbolTable(parsed);
 
 		this.cache.set(uri, {
 			version: doc.version,
@@ -36,7 +35,10 @@ export class DocumentManager implements Disposable {
 		return { document: parsed, symbolTable };
 	}
 
-	scheduleReparse(doc: TextDocument, callback: (doc: TextDocument) => void): void {
+	scheduleReparse(
+		doc: TextDocument,
+		callback: (doc: TextDocument) => void,
+	): void {
 		const uri = doc.uri.toString();
 		const existing = this.debounceTimers.get(uri);
 		if (existing) {

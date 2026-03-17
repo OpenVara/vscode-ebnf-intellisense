@@ -1,4 +1,4 @@
-# Contributing to EBNF Syntax Highlighting and Intellisense
+# Contributing to ABNF Syntax Highlighting and Intellisense
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to the project.
 
@@ -12,8 +12,8 @@ This project adheres to a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By 
 2. **Clone your fork** locally:
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/vscode-ebnf-intellisense.git
-   cd vscode-ebnf-intellisense
+   git clone https://github.com/YOUR_USERNAME/vscode-abnf.git
+   cd vscode-abnf
    ```
 
 3. **Install dependencies**:
@@ -36,15 +36,15 @@ Generates the extension bundle in `dist/extension.js`.
 
 1. Open the project in VS Code
 2. Press `F5` to launch the extension in a new VS Code window
-3. Create or open `.ebnf` files to test functionality
+3. Create or open `.abnf` files to test functionality
 
 ### Code Style
 
 This project uses [Biome](https://biomejs.dev) for code quality:
 
 ```bash
-bun run lint  # Check code style
-bun run format  # Auto-fix formatting
+bun run lint      # Check code style
+bun run format    # Auto-fix formatting
 ```
 
 All contributions must pass Biome checks before merging.
@@ -53,10 +53,10 @@ All contributions must pass Biome checks before merging.
 
 ### Grammar Changes
 
-TextMate grammar improvements are in `syntaxes/ebnf.tmLanguage.json`:
+TextMate grammar improvements are in `syntaxes/abnf.tmLanguage.json`:
 
-- Maintain proper scope naming (e.g., `keyword.operator.repetition.ebnf`)
-- Test changes by opening `.ebnf` files in a debug VS Code instance
+- Maintain proper scope naming (e.g., `keyword.operator.repetition.abnf`)
+- Test changes by opening `.abnf` files in a debug VS Code instance
 - Include delimiter scoping (`punctuation.definition.*`) for theme compatibility
 - Prevent unintended multiline matching with lookahead assertions
 
@@ -93,7 +93,7 @@ Examples:
 
 Before opening an issue:
 
-1. Check existing [issues](https://github.com/xsyetopz/vscode-ebnf-intellisense/issues)
+1. Check existing [issues](https://github.com/xsyetopz/vscode-abnf/issues)
 2. Provide a minimal reproducible example
 3. Include VS Code version and extension version
 4. Attach screenshots or test files
@@ -125,4 +125,4 @@ By contributing, you agree that your contributions will be licensed under the pr
 
 ## Questions?
 
-Open an [issue](https://github.com/xsyetopz/vscode-ebnf-intellisense/issues) or start a discussion on GitHub.
+Open an [issue](https://github.com/xsyetopz/vscode-abnf/issues) or start a discussion on GitHub.
