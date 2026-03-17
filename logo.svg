@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0d1b2a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5dade2"/>
+      <stop offset="100%" stop-color="#3498db"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#85c1e9"/>
+      <stop offset="100%" stop-color="#5dade2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded background -->
+  <rect x="4" y="4" width="120" height="120" rx="20" ry="20" fill="url(#bg)" stroke="#2c5f8a" stroke-width="1.5"/>
+
+  <!-- Decorative grammar lines (subtle background pattern) -->
+  <g opacity="0.08" stroke="#5dade2" stroke-width="1" fill="none">
+    <line x1="16" y1="28" x2="112" y2="28"/>
+    <line x1="16" y1="42" x2="90" y2="42"/>
+    <line x1="16" y1="86" x2="80" y2="86"/>
+    <line x1="16" y1="100" x2="112" y2="100"/>
+  </g>
+
+  <!-- ABNF syntax symbols: angle brackets as grammar motif -->
+  <!-- Left angle bracket < -->
+  <path d="M 18 64 L 32 48 M 18 64 L 32 80" stroke="url(#glow)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <!-- Right angle bracket > -->
+  <path d="M 110 64 L 96 48 M 110 64 L 96 80" stroke="url(#glow)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+  <!-- Central "ABNF" text -->
+  <text x="64" y="60" text-anchor="middle" font-family="'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, monospace" font-size="26" font-weight="700" fill="url(#accent)" letter-spacing="1">
+    ABNF
+  </text>
+
+  <!-- Rule definition operator  =/ (incremental alternative) -->
+  <text x="64" y="80" text-anchor="middle" font-family="'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, monospace" font-size="16" font-weight="400" fill="#85c1e9" opacity="0.7">
+    =/
+  </text>
+
+  <!-- Small RFC badge -->
+  <rect x="36" y="96" width="56" height="16" rx="4" ry="4" fill="#5dade2" opacity="0.15"/>
+  <text x="64" y="108" text-anchor="middle" font-family="'SF Mono', 'Fira Code', monospace" font-size="9" font-weight="600" fill="#5dade2" opacity="0.7" letter-spacing="2">
+    RFC 5234
+  </text>
+</svg>

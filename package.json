@@ -21,12 +21,28 @@
   "keywords": [
     "ABNF",
     "RFC 5234",
+    "RFC 7405",
+    "BNF",
+    "EBNF",
     "grammar",
-    "syntax"
+    "syntax",
+    "syntax highlighting",
+    "parser",
+    "language server",
+    "intellisense",
+    "formatter",
+    "linter",
+    "diagnostics",
+    "augmented backus-naur form"
   ],
   "categories": [
     "Programming Languages"
   ],
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#0d1b2a",
+    "theme": "dark"
+  },
   "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.75.0"
@@ -42,7 +58,11 @@
         "extensions": [
           ".abnf"
         ],
-        "configuration": "abnf-language-configuration.json"
+        "configuration": "abnf-language-configuration.json",
+        "icon": {
+          "light": "logo.png",
+          "dark": "logo.png"
+        }
       }
     ],
     "grammars": [
