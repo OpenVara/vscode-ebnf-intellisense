@@ -1,4 +1,5 @@
 /* JSON value grammar in W3C XML EBNF style */
+
 [1] json-text       ::= ws value ws
 
 [2] value           ::= object

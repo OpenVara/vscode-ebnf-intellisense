@@ -1,4 +1,5 @@
 ; JSON value grammar in RFC 5511-style RBNF
+
 <JSON text>              ::= <WS> <value> <WS>
 
 <value>                  ::= <object>

@@ -1,4 +1,5 @@
 ; JSON value grammar in ABNF style (RFC 5234/RFC 7405 subset)
+
 json-text       = ws value ws
 
 value           = object

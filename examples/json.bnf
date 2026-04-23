@@ -1,4 +1,5 @@
 ; JSON value grammar in W3C BNF style
+
 <json-text>      ::= <ws> <value> <ws>
 
 <value>          ::= <object>
